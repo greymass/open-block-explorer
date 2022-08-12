@@ -284,9 +284,7 @@ export default defineComponent({
       expirationDate.value = transaction.expiration.toString();
 
       const actionsPromises = transaction.actions.map(async (action: Action) => {
-        const data = await api.deserializeActionData(action) as {
-          code: string
-        };
+        const data = await api.deserializeActionData(action);
 
         if (action.account.toString() === 'eosio' && action.name.toString() === 'setcode') {
           data.code = `Binary data with SHA <${getShaForCode(data.code)}>`

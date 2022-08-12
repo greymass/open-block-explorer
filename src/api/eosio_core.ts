@@ -34,7 +34,8 @@ export const getTableRows = async function (
 
 export const deserializeActionData = async function (
   data: ActionType
-): Promise<ABISerializable> {
+  // eslint-disable-next-line
+): Promise<Record<string, any>> {
   const { abi } = await eosioCore.v1.chain.get_abi(data.account);
   if (!abi) {
     throw new Error(`No ABI for ${String(data.account)}`);
